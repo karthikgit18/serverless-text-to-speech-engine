@@ -26,14 +26,15 @@ Generated .mp3 file is stored in the destination S3 bucket
 
 This entire flow is fully automated and serverless.
 
+
 **📦 Tech Stack**
 
-Technology	Purpose
-AWS Lambda (Python)	Serverless execution
-Amazon Polly	AI Text‑to‑Speech
-Amazon S3	Input & Output storage
-boto3	AWS SDK for Python
-IAM	Secure service permissions 
+    Technology	Purpose
+    AWS Lambda (Python)	Serverless execution
+    Amazon Polly	AI Text‑to‑Speech
+    Amazon S3	Input & Output storage
+    boto3	AWS SDK for Python
+    IAM	Secure service permissions 
 
 
 **📚 Real‑World Use Cases**
