@@ -1,1 +1,57 @@
+import boto3
+import json
+import logging
 
+# Set up logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    # Initialize AWS clients
+    s3 = boto3.client('s3')
+    polly = boto3.client('polly')
+
+    # Hardcoded bucket names
+    source_bucket = "mr.translator-source"
+    destination_bucket = "mr.translator-destination"
+
+    # Get uploaded object key
+    text_file_key = event['Records'][0]['s3']['object']['key']
+    audio_key = text_file_key.replace('.txt', '.mp3')
+
+    try:
+        # Read text file from source bucket
+        logger.info(f"Fetching file from {source_bucket}/{text_file_key}")
+        text_file = s3.get_object(Bucket=source_bucket, Key=text_file_key)
+        text = text_file['Body'].read().decode('utf-8')
+
+        # Convert text to speech using Polly
+        logger.info("Sending text to Amazon Polly")
+        response = polly.synthesize_speech(
+            Text=text,
+            OutputFormat='mp3',
+            VoiceId='Joanna'
+        )
+
+        # Save audio and upload to destination bucket
+        if 'AudioStream' in response:
+            temp_audio_path = "/tmp/audio.mp3"
+            with open(temp_audio_path, "wb") as audio_file:
+                audio_file.write(response['AudioStream'].read())
+
+            logger.info(f"Uploading audio to {destination_bucket}/{audio_key}")
+            s3.upload_file(temp_audio_path, destination_bucket, audio_key)
+
+        logger.info("Text-to-Speech conversion successful")
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps("Text-to-Speech conversion completed successfully")
+        }
+
+    except Exception as e:
+        logger.error(f"Error: {str(e)}")
+        return {
+            "statusCode": 500,
+            "body": json.dumps("Error during Text-to-Speech conversion")
+        }
