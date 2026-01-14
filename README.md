@@ -29,12 +29,11 @@ This entire flow is fully automated and serverless.
 
 **📦 Tech Stack**
 
-    Technology	Purpose
-    AWS Lambda (Python)	Serverless execution
-    Amazon Polly	AI Text‑to‑Speech
-    Amazon S3	Input & Output storage
-    boto3	AWS SDK for Python
-    IAM	Secure service permissions 
+    AWS Lambda (Python)
+    Amazon Polly
+    Amazon S3
+    boto3
+    IAM	Secure service permissions
 
 
 **📚 Real‑World Use Cases**
