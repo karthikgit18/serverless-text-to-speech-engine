@@ -27,9 +27,13 @@ Generated .mp3 file is stored in the destination S3 bucket
 This entire flow is fully automated and serverless.
 
 
+
+
 **🛠️ Architecture**
 
 <img width="2208" height="1164" alt="image" src="https://github.com/user-attachments/assets/d9f1cdd5-d4eb-452f-a234-282f9a48c95f" />
+
+
 
 
 **📦 Tech Stack**
