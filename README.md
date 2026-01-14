@@ -35,6 +35,11 @@ This entire flow is fully automated and serverless.
 
 
 
+<img width="1920" height="1080" alt="Screenshot from 2026-01-14 01-52-16" src="https://github.com/user-attachments/assets/21ac48a1-241d-4478-b0fd-1c320ff470e2" />
+
+
+
+
 
 **📦 Tech Stack**
 
